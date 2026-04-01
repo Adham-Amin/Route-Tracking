@@ -3,6 +3,8 @@
         android:label="routing_tracker"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+                 android:value="AIzaSyA3W5huQAwzXVkUzXX1gkeDzXbGrqlpCbg"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

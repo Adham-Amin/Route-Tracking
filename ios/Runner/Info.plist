@@ -14,6 +14,8 @@
 	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>routing_tracker</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>the app is using location service</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
