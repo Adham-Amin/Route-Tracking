@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
-  const CustomTextField({super.key, required this.controller});
+  const CustomTextField({
+    super.key,
+    required this.controller,
+    required this.onChanged,
+  });
 
   final TextEditingController controller;
+  final Function(String) onChanged;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onChanged: onChanged,
       controller: controller,
       decoration: const InputDecoration(
         fillColor: Colors.white,
