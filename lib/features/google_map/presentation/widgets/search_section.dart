@@ -27,6 +27,8 @@ class _SearchSectionState extends State<SearchSection> {
   @override
   void dispose() {
     _searchController.dispose();
+    _debounce?.cancel();
+    _searchController.dispose();
     super.dispose();
   }
 
@@ -38,8 +40,12 @@ class _SearchSectionState extends State<SearchSection> {
           controller: _searchController,
           onChanged: (value) {
             if (_debounce?.isActive ?? false) _debounce!.cancel();
-            _debounce = Timer(const Duration(milliseconds: 300), () {
-              context.read<GoogleMapCubit>().getPlaces(query: value);
+            _debounce = Timer(const Duration(milliseconds: 400), () {
+              if (_searchController.text.isNotEmpty) {
+                context.read<GoogleMapCubit>().getPlaces(query: value);
+              } else {
+                context.read<GoogleMapCubit>().clearPlaces();
+              }
             });
           },
         ),
