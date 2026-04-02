@@ -18,7 +18,7 @@ class SearchList extends StatelessWidget {
       ),
       child: BlocBuilder<GoogleMapCubit, GoogleMapState>(
         builder: (context, state) {
-          if (state is GoogleMapLoaded) {
+          if (state is PlacesLoaded) {
             return ListView.separated(
               padding: EdgeInsets.zero,
               shrinkWrap: true,

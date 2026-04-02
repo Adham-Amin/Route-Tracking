@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:routing_tracker/features/google_map/domain/entities/place_entity.dart';
 import 'package:routing_tracker/features/google_map/domain/repositories/google_map_repo.dart';
 part 'google_map_state.dart';
@@ -9,18 +10,34 @@ class GoogleMapCubit extends Cubit<GoogleMapState> {
   final GoogleMapRepo googleMapRepo;
 
   List<PlaceEntity> places = [];
+  List<LatLng> polylinePoints = [];
 
-  void getPlaces({required String query}) async {
-    emit(GoogleMapLoading());
+  Future<void> getPlaces({required String query}) async {
+    emit(PlacesLoading());
     var result = await googleMapRepo.getPlaces(query: query);
     result.fold((l) => emit(GoogleMapError(failure: l.message)), (r) {
       places = r;
-      emit(GoogleMapLoaded());
+      emit(PlacesLoaded());
     });
   }
 
   void clearPlaces() {
     places = [];
-    emit(GoogleMapLoaded());
+    emit(PlacesLoaded());
+  }
+
+  Future<void> getPolylinePoints({
+    required LatLng origin,
+    required LatLng destination,
+  }) async {
+    emit(PolylineLoading());
+    var result = await googleMapRepo.getPolylinePoints(
+      origin: origin,
+      destination: destination,
+    );
+    result.fold((l) => emit(GoogleMapError(failure: l.message)), (r) {
+      polylinePoints = r;
+      emit(PolylineLoaded());
+    });
   }
 }

@@ -1,14 +1,15 @@
 import 'dart:async';
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:routing_tracker/features/google_map/domain/entities/place_entity.dart';
 import 'package:routing_tracker/features/google_map/presentation/cubit/google_map_cubit.dart';
 import 'package:routing_tracker/features/google_map/presentation/widgets/custom_text_field.dart';
 import 'package:routing_tracker/features/google_map/presentation/widgets/search_list.dart';
 
 class SearchSection extends StatefulWidget {
-  const SearchSection({super.key});
+  const SearchSection({super.key, required this.onTap});
+
+  final Function(PlaceEntity) onTap;
 
   @override
   State<SearchSection> createState() => _SearchSectionState();
@@ -54,8 +55,7 @@ class _SearchSectionState extends State<SearchSection> {
           onTap: (place) {
             _searchController.clear();
             context.read<GoogleMapCubit>().clearPlaces();
-            log(place.lat.toString());
-            log(place.lon.toString());
+            widget.onTap(place);
           },
         ),
       ],

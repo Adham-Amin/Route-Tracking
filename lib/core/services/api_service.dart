@@ -3,7 +3,6 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class ApiService {
   final Dio _dio;
-  final String baseUrl = 'https://nominatim.openstreetmap.org';
 
   ApiService(this._dio) {
     addInterceptors();
@@ -33,7 +32,10 @@ class ApiService {
     );
   }
 
-  Future<dynamic> get({required String endPoint}) async {
+  Future<dynamic> get({
+    required String baseUrl,
+    required String endPoint,
+  }) async {
     final Response response = await _dio.get('$baseUrl$endPoint');
     return response.data;
   }

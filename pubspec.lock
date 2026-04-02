@@ -169,7 +169,7 @@ packages:
     source: hosted
     version: "2.18.1"
   google_maps_flutter_platform_interface:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: google_maps_flutter_platform_interface
       sha256: ddbe34435dfb34e83fca295c6a8dcc53c3b51487e9eec3c737ce4ae605574347
@@ -312,6 +312,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.8"
+  polyline_tools:
+    dependency: "direct main"
+    description:
+      name: polyline_tools
+      sha256: "8c523335bb8d16fb0c7835916ed94d97d9a063a4386e9193bd6e8fe233591df9"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.2"
   pretty_dio_logger:
     dependency: "direct main"
     description:
